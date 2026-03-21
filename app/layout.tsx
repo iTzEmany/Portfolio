@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils"; // Assicurati di aver creato questo file come detto prima
+import { Navbar } from "@/components/layout/Navbar";
 
 // Configurazione Font Primario (Sans-serif)
 const inter = Inter({ 
@@ -43,10 +44,8 @@ export default function RootLayout({
           jetbrainsMono.variable
         )}
       >
-        {/* Un contenitore principale per limitare la larghezza massima su schermi enormi */}
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-          {children}
-        </main>
+        <Navbar />
+        {children}
       </body>
     </html>
   );

@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        'lg_to_xl': '1120px',
+      },
       colors: {
         // Core (Sfondi e Testi)
         background: "#121212", // Antracite profondo (Migliore del nero puro per l'UX)
