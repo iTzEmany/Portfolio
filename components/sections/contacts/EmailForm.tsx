@@ -110,7 +110,7 @@ export function EmailForm() {
           name="body"
           value={formData.body}
           onChange={handleChange}
-          className="w-full flex-1 resize-none bg-white/5 rounded border border-white/5 p-3 text-sm text-foreground focus:border-primary/50 focus:bg-white/10 focus:outline-none transition-colors scroll-smooth no-scrollbar"
+          className="w-full flex-1 min-h-[150px] lg:min-h-0 resize-none bg-white/5 rounded border border-white/5 p-3 text-sm text-foreground focus:border-primary/50 focus:bg-white/10 focus:outline-none transition-colors scroll-smooth no-scrollbar"
           placeholder="> Scrivi qui il tuo protocollo di comunicazione..."
           required
         />

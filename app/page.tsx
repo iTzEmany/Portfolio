@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { AnimatePresence, motion } from "framer-motion";
 import { BentoGrid, BentoGridItem } from "@/components/layout/BentoGrid";
 import { AboutMePreview } from "@/components/sections/aboutme/AboutMePreview";
@@ -8,23 +9,19 @@ import { ContactsLayout } from "@/components/sections/contacts/ContactsLayout";
 import { X, ChevronDown, Terminal } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+const AboutMeFull = dynamic(() => import("@/components/sections/aboutme/AboutMeFull"), {
+  loading: () => <p className="animate-pulse font-mono text-primary p-8">Caricamento modulo...</p>,
+});
+
 // Mock Data Placeholder
 const mockCardsData = [
   {
     id: "about-me",
     title: "ABOUT_ME",
-    className: "md:col-span-2 md:row-span-2",
+    className: "md:col-span-1 md:row-span-2",
     theme: "sand",
-    preview: (
-      <div className="flex h-full w-full items-center justify-center rounded border-2 border-dashed border-primary/20 bg-primary/5 p-4 text-primary">
-        [PREVIEW: About Me Summary]
-      </div>
-    ),
-    fullContent: (
-      <div className="flex h-full w-full items-center justify-center rounded border-2 border-dashed border-accent-olive/20 bg-accent-olive/5 p-8 text-accent-olive">
-        [FULL_CONTENT: Detailed Bio & Stats]
-      </div>
-    ),
+    preview: <AboutMePreview />,
+    fullContent: <AboutMeFull />,
   },
   {
     id: "projects",
@@ -143,18 +140,18 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 md:p-4 backdrop-blur-sm"
             onClick={() => setSelectedId(null)}
           >
             <motion.div
               layoutId={selectedId}
-              className="relative flex h-[95vh] w-[95%] flex-col overflow-hidden rounded-bento border border-border bg-background shadow-2xl shadow-primary/10"
+              className="relative flex h-full w-full md:h-[95vh] md:w-[95%] lg:w-[90%] 2xl:w-[80%] flex-col overflow-hidden md:rounded-bento md:border md:border-border bg-background shadow-2xl shadow-primary/10"
               onClick={(e) => e.stopPropagation()}
               role="dialog"
               aria-modal="true"
               tabIndex={-1}
             >
-              <div className="sticky top-0 z-30 flex items-center justify-between border-b border-border bg-background/80 p-6 backdrop-blur-md">
+              <div className="sticky top-0 z-30 flex items-center justify-between border-b border-border bg-background/80 p-4 backdrop-blur-md">
                 <h2 className="font-mono text-2xl font-bold tracking-tighter text-primary">
                   {selectedCard.title}
                 </h2>

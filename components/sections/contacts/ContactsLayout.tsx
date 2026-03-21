@@ -21,7 +21,7 @@ export function ContactsLayout() {
       aria-label="Sezione Contatti"
     >
       {/* Contenitore Terminale OS-Style */}
-      <div className="flex w-full md:w-[70vw] h-[80vh] max-w-6xl flex-col overflow-hidden rounded-lg border border-accent-olive/30 bg-black shadow-2xl">
+      <div className="flex w-full lg:w-[80vw] xl:w-[70vw] min-h-[80vh] h-auto lg:h-[80vh] max-w-6xl flex-col overflow-hidden rounded-lg border border-accent-olive/30 bg-black shadow-2xl">
         
         {/* Header Terminale OS-Style */}
         <header className="relative flex items-center justify-between border-b border-accent-olive/30 bg-[#1a1a1a] px-4 py-3">
@@ -50,7 +50,7 @@ export function ContactsLayout() {
               aria-label="Scheda Contatti e Mail"
               aria-pressed={activeTab === "mail"}
             >
-              [1] Contatti/Mail
+              Contacts
             </button>
             <button
               onClick={() => setActiveTab("shell")}
@@ -62,7 +62,7 @@ export function ContactsLayout() {
               aria-label="Scheda Shell Attiva"
               aria-pressed={activeTab === "shell"}
             >
-              [2] Shell Attiva
+              Shell Attiva
             </button>
           </div>
         </header>
@@ -77,13 +77,13 @@ export function ContactsLayout() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2 }}
-                className="absolute inset-0 flex flex-col md:flex-row h-full w-full"
+                className="flex flex-col lg:flex-row h-full w-full"
               >
                 {/* Orizzontale Split 40% (Tree) / 60% (Email) - Stacked su mobile */}
-                <div className="w-full md:w-[40%] flex flex-col p-6 overflow-y-auto border-b md:border-b-0 md:border-r border-accent-olive/20">
+                <div className="w-full lg:w-[40%] flex flex-col p-6 lg:overflow-y-auto border-b lg:border-b-0 lg:border-r border-accent-olive/20">
                   <TerminalTree />
                 </div>
-                <div className="w-full md:w-[60%] flex flex-col p-6 overflow-y-auto">
+                <div className="w-full lg:w-[60%] flex flex-col p-6 lg:overflow-y-auto">
                   <EmailForm />
                 </div>
               </motion.div>
@@ -94,7 +94,7 @@ export function ContactsLayout() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2 }}
-                className="absolute inset-0 h-full w-full"
+                className="flex flex-col h-full w-full"
               >
                 <ActiveShell />
               </motion.div>

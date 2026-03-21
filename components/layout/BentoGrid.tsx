@@ -53,7 +53,7 @@ export const BentoGridItem = ({
       layoutId={layoutId} // Chiave per l'animazione condivisa
       onClick={onClick}   // Rendiamo il div cliccabile
       className={cn(
-        "row-span-1 rounded-bento transition duration-200 shadow-none p-4 dark:border-white/[0.2] border border-transparent flex flex-col justify-between space-y-4",
+        "row-span-1 rounded-bento transition duration-200 shadow-none p-4 dark:border-white/20 border border-transparent flex flex-col justify-between space-y-4",
         // Tema Retro-Tech
         "bg-background border-border backdrop-blur-sm",
         // Interazione: cursore e hover
