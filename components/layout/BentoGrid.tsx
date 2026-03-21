@@ -1,10 +1,11 @@
 // components/layout/BentoGrid.tsx
 import { cn } from "@/lib/utils";
 import React from "react";
+import { motion } from "framer-motion"; // Importiamo motion
 
 /**
  * Contenitore principale della Bento Grid.
- * Gestisce il layout responsivo: 1 colonna mobile, 3 colonne desktop.
+ * Gestisce il layout responsivo. Rimane invariato.
  */
 export const BentoGrid = ({
   className,
@@ -27,7 +28,7 @@ export const BentoGrid = ({
 
 /**
  * Singolo modulo della Bento Grid.
- * Supporta custom span (es. occupare 2 colonne) tramite la prop className.
+ * Trasformato in motion.div e reso interattivo (cliccabile).
  */
 export const BentoGridItem = ({
   className,
@@ -35,26 +36,42 @@ export const BentoGridItem = ({
   description,
   header,
   icon,
+  onClick, // Nuova prop per l'interazione
+  layoutId, // Nuova prop per l'animazione condivisa
 }: {
   className?: string;
   title?: string | React.ReactNode;
   description?: string | React.ReactNode;
-  header?: React.ReactNode; // Spazio per immagini, canvas 3D o pixel art
+  header?: React.ReactNode;
   icon?: React.ReactNode;
+  onClick?: () => void; // Definiamo il tipo dell'event handler
+  layoutId?: string;    // Definiamo il tipo per layoutId
 }) => {
   return (
-    <div
+    // Sostituiamo <div> con <motion.div>
+    <motion.div
+      layoutId={layoutId} // Chiave per l'animazione condivisa
+      onClick={onClick}   // Rendiamo il div cliccabile
       className={cn(
-        "row-span-1 rounded-bento group/bento hover:shadow-xl transition duration-200 shadow-none p-4 dark:bg-black dark:border-white/[0.2] bg-white border border-transparent justify-between flex flex-col space-y-4",
-        // Qui applichiamo il nostro tema Retro-Tech
-        "bg-background/50 border-border backdrop-blur-sm", 
-        // Hover state con accento ruggine/oliva per il feeling tech
-        "hover:border-accent-olive/50",
+        "row-span-1 rounded-bento transition duration-200 shadow-none p-4 dark:border-white/[0.2] border border-transparent flex flex-col justify-between space-y-4",
+        // Tema Retro-Tech
+        "bg-background border-border backdrop-blur-sm",
+        // Interazione: cursore e hover
+        "cursor-pointer hover:border-accent-olive/50 hover:shadow-2xl hover:shadow-accent-olive/10",
+        // Gestione overflow per l'anteprima (nascondiamo lo scroll bar)
+        "overflow-hidden no-scrollbar",
         className
       )}
+      // Piccola animazione di hover nativa di Framer Motion
+      whileHover={{ y: -4 }} 
+      transition={{ duration: 0.2 }}
     >
-      {header}
-      <div className="group-hover/bento:translate-x-2 transition duration-200">
+      {/* Container per l'anteprima del contenuto */}
+      <div className="relative flex-1 w-full h-full overflow-hidden">
+        {header}
+      </div>
+
+      <div className="relative z-10 transition duration-200">
         {icon}
         <div className="font-mono font-bold text-primary mb-2 mt-2">
           {title}
@@ -63,6 +80,6 @@ export const BentoGridItem = ({
           {description}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
