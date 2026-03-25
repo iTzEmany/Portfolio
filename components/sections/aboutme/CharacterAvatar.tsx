@@ -33,7 +33,7 @@ export function CharacterAvatar() {
       {/* Anagrafica Personaggio */}
       <header className="flex flex-col gap-3 text-center md:text-left text-foreground">
         <h2 className="font-mono text-xl md:text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold uppercase tracking-widest text-primary">
-          [ NOME_UTENTE ]
+          [ EMANUELE LIONETTI ]
         </h2>
         
         <div className="flex flex-col gap-1.5 mt-2">
