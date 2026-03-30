@@ -17,7 +17,7 @@ export function ContactsLayout() {
   return (
     <section 
       id="contacts" 
-      className="flex min-h-screen w-full flex-col items-center justify-center bg-[#0a0a0a] px-4 py-20"
+      className="flex h-screen w-full flex-col items-center justify-center bg-[#0a0a0a] px-4 py-20"
       aria-label="Sezione Contatti"
     >
       {/* Contenitore Terminale OS-Style */}

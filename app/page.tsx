@@ -7,6 +7,7 @@ import { BentoGrid, BentoGridItem } from "@/components/layout/BentoGrid";
 import { AboutMePreview } from "@/components/sections/aboutme/AboutMePreview";
 import { ContactsLayout } from "@/components/sections/contacts/ContactsLayout";
 import { X, ChevronDown, Terminal } from "lucide-react";
+import { Hero } from "@/components/sections/hero/Hero";
 import { cn } from "@/lib/utils";
 
 import { AboutMeSkeleton } from "@/components/sections/aboutme/AboutMeSkeleton";
@@ -92,26 +93,7 @@ export default function Home() {
     <main className="relative w-full">
       {/* 1. Viewport: Hero Section */}
       <section id="hero" className="relative flex min-h-screen w-full flex-col items-center justify-center bg-background px-4">
-        <div className="flex flex-col items-center space-y-6 text-center">
-          <h1 className="font-mono text-5xl font-bold tracking-tight text-primary md:text-7xl lg:text-8xl">
-            SYSTEM_INIT...
-          </h1>
-          <p className="max-w-xl font-sans text-lg text-foreground/70 md:text-xl">
-            Initializing digital protocols.
-            <br />
-            Stand by for cognitive interface deployment.
-          </p>
-        </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          className="absolute bottom-12 flex flex-col items-center gap-2 text-primary/50"
-        >
-          <span className="font-mono text-xs uppercase tracking-widest">Scroll</span>
-          <ChevronDown className="h-6 w-6" />
-        </motion.div>
+        <Hero />
       </section>
 
       {/* 2. Viewport: Bento Grid Section */}

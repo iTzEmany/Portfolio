@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Home, LayoutGrid, Terminal, Download } from "lucide-react";
+import { Home, LayoutGrid, Terminal, Download, Eye, EyeOff } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -11,7 +11,7 @@ const NAV_LINKS = [
   { label: "Contacts", href: "#contacts" },
 ];
 
-export function Navbar() {
+export function Navbar({ showNoise, onToggleNoise }: { showNoise: boolean; onToggleNoise: () => void }) {
   const [isScrolled, setIsScrolled] = useState(false);
 
   // Gestione dinamica dello sfondo allo scroll (solo Web Client)
@@ -39,17 +39,18 @@ export function Navbar() {
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-          
-          {/* LOGO */}
-          <a 
-            href="#hero" 
-            className="font-mono text-lg font-bold tracking-widest text-primary transition-opacity hover:opacity-80"
-          >
-            [ EMANUELE LIONETTI ]
-          </a>
+          {/* LOGO SINISTRA */}
+          <div className="flex flex-1 items-center">
+            <a 
+              href="#hero" 
+              className="font-mono text-lg font-bold tracking-widest text-primary transition-opacity hover:opacity-80"
+            >
+              [ EMANUELE LIONETTI ]
+            </a>
+          </div>
 
-          {/* DESKTOP NAV */}
-          <nav className="hidden md:block">
+          {/* NAVBAR CENTRALE */}
+          <nav className="hidden md:flex flex-1 justify-center">
             <ul className="flex items-center gap-8">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
@@ -65,8 +66,30 @@ export function Navbar() {
             </ul>
           </nav>
 
-          {/* DESKTOP CTA */}
-          <div className="hidden md:block">
+          {/* CTA DESTRA: Download CV e Toggle Noise */}
+          <div className="hidden md:flex flex-1 justify-end items-center gap-2">
+            <button
+  onClick={onToggleNoise}
+  title={showNoise ? "Disattiva grana visiva" : "Attiva grana visiva"}
+  aria-label="Toggle visual noise"
+  className={cn(
+    "group relative inline-flex items-center justify-center rounded border px-3 py-2 transition-all",
+    showNoise 
+      ? "border-primary bg-primary/10 text-primary" 
+      : "border-muted text-muted-foreground hover:border-primary hover:text-primary"
+  )}
+>
+  {showNoise ? (
+    <Eye className="h-4 w-4" /> 
+  ) : (
+    <EyeOff className="h-4 w-4" />
+  )}
+  
+  {/* Tooltip elegante che compare al passaggio */}
+  <span className="absolute -bottom-10 scale-0 rounded bg-foreground px-2 py-1 text-[10px] text-background transition-all group-hover:scale-100">
+    {showNoise ? "Visual: ON" : "Visual: OFF"}
+  </span>
+</button>
             <a
               href="/cv.pdf"
               download="Curriculum_Vitae.pdf"
