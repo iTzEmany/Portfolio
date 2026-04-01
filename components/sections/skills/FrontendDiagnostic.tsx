@@ -7,10 +7,10 @@ export function FrontendDiagnostic() {
   return (
     <article className="flex h-full flex-col rounded-lg border border-border bg-black/40 p-6 md:p-8 font-mono">
       <header className="border-b border-border/50 pb-4 mb-6 flex justify-between items-end">
-        <h3 className="text-accent-olive text-2xl md:text-3xl lg:text-4xl font-bold uppercase tracking-widest leading-tight">
+        <h3 className="text-accent-olive text-[clamp(0.875rem,2.5vw,1.25rem)] whitespace-nowrap font-bold uppercase tracking-widest leading-tight">
           [ SYSTEM_CORE: DIAGNOSTIC ]
         </h3>
-        <span className="text-accent-olive text-xs md:text-sm hidden sm:block">[ ONLINE ]</span>
+        <span className="text-accent-olive text-[clamp(0.75rem,2vw,0.875rem)] whitespace-nowrap hidden sm:block">[ ONLINE ]</span>
       </header>
 
       <div className="flex flex-col gap-8">

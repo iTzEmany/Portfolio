@@ -3,6 +3,7 @@ import { CharacterAvatar } from "./CharacterAvatar";
 import { CharacterStats } from "./CharacterStats";
 import { CharacterEquipment } from "./CharacterEquipment";
 import { CharacterTimeline } from "./CharacterTimeline";
+import { Download } from "lucide-react";
 
 /**
  * AboutMeFull Component
@@ -38,6 +39,18 @@ export function AboutMeFull() {
         */}
         <div className="flex flex-col gap-6 md:col-span-2 2xl:gap-8">
           <CharacterTimeline />
+        </div>
+        
+        {/* Call to Action: Download Resume */}
+        <div className="flex w-full md:col-span-2 justify-center md:justify-end mt-4">
+          <a
+            href="/cv.pdf"
+            download="Curriculum_Vitae.pdf"
+            className="group flex w-fit items-center gap-3 rounded border border-primary bg-primary/10 px-6 py-3 font-mono text-[clamp(0.875rem,2.5vw,1rem)] whitespace-nowrap font-bold tracking-widest text-primary transition-all hover:bg-primary hover:text-background focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+          >
+            [ DOWNLOAD RESUME ]
+            <Download className="h-5 w-5 transition-transform group-hover:-translate-y-1" aria-hidden="true" />
+          </a>
         </div>
         
       </div>

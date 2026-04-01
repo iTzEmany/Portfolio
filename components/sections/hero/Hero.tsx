@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion, useReducedMotion, Variants } from "framer-motion";
-import { ArrowDownRight } from "lucide-react";
+import { ArrowDownRight, Download } from "lucide-react";
 
 import { MicroHUD } from "./MicroHUD";
 import { GridSystem } from "./GridSystem";
@@ -78,7 +78,7 @@ export const Hero = () => {
         <motion.div variants={itemVariants} className="mb-4">
           <span className="inline-flex items-center gap-2 bg-primary/10 px-3 py-1 font-mono text-xs font-bold tracking-[0.2em] text-primary border border-primary/20">
             <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-            SYSTEM_ONLINE
+            SISTEMA ONLINE
           </span>
         </motion.div>
 
@@ -127,13 +127,24 @@ export const Hero = () => {
             Specializzato in React, Next.js e interazioni complesse.
           </h2>
 
-          <a
-            href="#bento-grid"
-            className="group flex w-fit items-center gap-3 font-mono text-sm font-bold tracking-widest text-primary transition-all hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-          >
-            [ INIZIALIZZA_PROGETTI ]
-            <ArrowDownRight className="h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:translate-y-1" />
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-2">
+            <a
+              href="#bento-grid"
+              className="group flex w-fit items-center gap-3 font-mono text-[clamp(0.75rem,2vw,1rem)] whitespace-nowrap font-bold tracking-widest text-primary transition-all hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              [ INIZIALIZZA PROGETTI ]
+              <ArrowDownRight className="h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:translate-y-1" />
+            </a>
+            
+            <a
+              href="/cv.pdf"
+              download="Curriculum_Vitae.pdf"
+              className="group flex w-fit items-center gap-3 font-mono text-[clamp(0.75rem,2vw,1rem)] whitespace-nowrap font-bold tracking-widest text-primary transition-all hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              [ DOWNLOAD RESUME ]
+              <Download className="h-5 w-5 transition-transform group-hover:-translate-y-1" />
+            </a>
+          </div>
         </motion.div>
 
       </motion.div>

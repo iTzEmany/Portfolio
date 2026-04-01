@@ -27,7 +27,7 @@ export function CharacterEquipment() {
       {/* SEZIONE: Core Equipment */}
       <section className="lg_to_xl:col-span-1">
         <header className="border-b border-border pb-2 md:pb-4 mb-5 md:mb-6">
-          <h3 className="font-mono text-sm md:text-base lg:text-lg 2xl:text-xl font-bold uppercase tracking-widest text-primary">
+          <h3 className="font-mono text-[clamp(0.875rem,2.5vw,1.25rem)] whitespace-nowrap font-bold uppercase tracking-widest text-primary">
             [ EQUIPPED_GEAR ]
           </h3>
         </header>
@@ -67,7 +67,7 @@ export function CharacterEquipment() {
       {/* SEZIONE: Trinkets & Accessories */}
       <section className="lg:col-span-1">
         <header className="border-b border-border pb-2 md:pb-4 mb-5 md:mb-6">
-          <h3 className="font-mono text-sm md:text-base lg:text-lg 2xl:text-xl font-bold uppercase tracking-widest text-accent-rust/90">
+          <h3 className="font-mono text-[clamp(0.875rem,2.5vw,1.25rem)] whitespace-nowrap font-bold uppercase tracking-widest text-accent-rust/90">
             [ TRINKETS_&_LORE ]
           </h3>
         </header>

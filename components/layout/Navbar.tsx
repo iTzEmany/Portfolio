@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Home, LayoutGrid, Terminal, Download, Eye, EyeOff } from "lucide-react";
+import { Home, LayoutGrid, Mail, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { NoiseToggle } from "@/components/ui/NoiseToggle";
 
 const NAV_LINKS = [
   { label: "Hero", href: "#hero" },
@@ -14,19 +15,17 @@ const NAV_LINKS = [
 export function Navbar({ showNoise, onToggleNoise }: { showNoise: boolean; onToggleNoise: () => void }) {
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Gestione dinamica dello sfondo allo scroll (solo Web Client)
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
-      {/* HEADER DESKTOP NAVBAR */}
+      {/* ===== HEADER (Desktop & Mobile) ===== */}
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -39,17 +38,18 @@ export function Navbar({ showNoise, onToggleNoise }: { showNoise: boolean; onTog
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-          {/* LOGO SINISTRA */}
+
+          {/* LOGO — sinistra */}
           <div className="flex flex-1 items-center">
-            <a 
-              href="#hero" 
-              className="font-mono text-lg font-bold tracking-widest text-primary transition-opacity hover:opacity-80"
+            <a
+              href="#hero"
+              className="font-mono text-[clamp(1rem,3vw,1.125rem)] whitespace-nowrap font-bold tracking-widest text-primary transition-opacity hover:opacity-80"
             >
               [ EMANUELE LIONETTI ]
             </a>
           </div>
 
-          {/* NAVBAR CENTRALE */}
+          {/* NAVBAR — centro (solo desktop) */}
           <nav className="hidden md:flex flex-1 justify-center">
             <ul className="flex items-center gap-8">
               {NAV_LINKS.map((link) => (
@@ -66,34 +66,16 @@ export function Navbar({ showNoise, onToggleNoise }: { showNoise: boolean; onTog
             </ul>
           </nav>
 
-          {/* CTA DESTRA: Download CV e Toggle Noise */}
-          <div className="hidden md:flex flex-1 justify-end items-center gap-2">
-            <button
-  onClick={onToggleNoise}
-  title={showNoise ? "Disattiva grana visiva" : "Attiva grana visiva"}
-  aria-label="Toggle visual noise"
-  className={cn(
-    "group relative inline-flex items-center justify-center rounded border px-3 py-2 transition-all",
-    showNoise 
-      ? "border-primary bg-primary/10 text-primary" 
-      : "border-muted text-muted-foreground hover:border-primary hover:text-primary"
-  )}
->
-  {showNoise ? (
-    <Eye className="h-4 w-4" /> 
-  ) : (
-    <EyeOff className="h-4 w-4" />
-  )}
-  
-  {/* Tooltip elegante che compare al passaggio */}
-  <span className="absolute -bottom-10 scale-0 rounded bg-foreground px-2 py-1 text-[10px] text-background transition-all group-hover:scale-100">
-    {showNoise ? "Visual: ON" : "Visual: OFF"}
-  </span>
-</button>
+          {/* CTA DESTRA — noise toggle sempre visibile + Download CV solo desktop */}
+          <div className="flex flex-1 justify-end items-center gap-2">
+            {/* Noise Toggle: visibile su mobile E desktop */}
+            <NoiseToggle showNoise={showNoise} onToggle={onToggleNoise} />
+
+            {/* Download CV: solo desktop */}
             <a
               href="/cv.pdf"
               download="Curriculum_Vitae.pdf"
-              className="group inline-flex items-center gap-2 rounded border border-primary bg-primary/10 px-4 py-2 font-mono text-xs font-bold uppercase tracking-widest text-primary transition-all hover:bg-primary hover:text-background focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+              className="hidden md:inline-flex group items-center gap-2 rounded border border-primary bg-primary/10 px-4 py-2 font-mono text-xs font-bold uppercase tracking-widest text-primary transition-all hover:bg-primary hover:text-background focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
             >
               <Download className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" aria-hidden="true" />
               <span>Download CV</span>
@@ -102,28 +84,34 @@ export function Navbar({ showNoise, onToggleNoise }: { showNoise: boolean; onTog
         </div>
       </motion.header>
 
-      {/* MOBILE BOTTOM NAVBAR (Floating Icons Glassmorphism) */}
-      <nav className="fixed bottom-6 left-1/2 z-50 flex w-fit -translate-x-1/2 items-center justify-around gap-12 rounded-full border border-primary/20 bg-background/80 px-8 py-3 shadow-2xl backdrop-blur-xl md:hidden">
-        <a 
-          href="#hero" 
-          className="group flex flex-col items-center justify-center p-2 text-foreground/60 transition-all duration-300 hover:text-primary active:scale-95" 
-          aria-label="Hero"
+      {/* ===== MOBILE BOTTOM NAVBAR ===== */}
+      <nav
+        className="fixed bottom-6 left-1/2 z-50 flex w-fit -translate-x-1/2 items-center justify-around gap-8 rounded-full border border-primary/20 bg-background/80 px-8 py-3 shadow-2xl backdrop-blur-xl md:hidden"
+        aria-label="Navigazione mobile"
+      >
+        <a
+          href="#hero"
+          className="group flex flex-col items-center justify-center gap-1 px-3 py-2 text-foreground/60 transition-all duration-300 hover:text-primary active:scale-95"
+          aria-label="Home"
         >
-          <Home className="size-6 transition-transform duration-300 group-hover:-translate-y-1" />
+          <Home className="size-5 transition-transform duration-300 group-hover:-translate-y-0.5" />
+          <span className="font-mono text-[10px] font-bold uppercase tracking-widest">Home</span>
         </a>
-        <a 
-          href="#bento-grid" 
-          className="group flex flex-col items-center justify-center p-2 text-foreground/60 transition-all duration-300 hover:text-primary active:scale-95" 
+        <a
+          href="#bento-grid"
+          className="group flex flex-col items-center justify-center gap-1 px-3 py-2 text-foreground/60 transition-all duration-300 hover:text-primary active:scale-95"
           aria-label="Works"
         >
-          <LayoutGrid className="size-6 transition-transform duration-300 group-hover:-translate-y-1" />
+          <LayoutGrid className="size-5 transition-transform duration-300 group-hover:-translate-y-0.5" />
+          <span className="font-mono text-[10px] font-bold uppercase tracking-widest">Works</span>
         </a>
-        <a 
-          href="#contacts" 
-          className="group flex flex-col items-center justify-center p-2 text-foreground/60 transition-all duration-300 hover:text-primary active:scale-95" 
-          aria-label="Contacts"
+        <a
+          href="#contacts"
+          className="group flex flex-col items-center justify-center gap-1 px-3 py-2 text-foreground/60 transition-all duration-300 hover:text-primary active:scale-95"
+          aria-label="Contatti"
         >
-          <Terminal className="size-6 transition-transform duration-300 group-hover:-translate-y-1" />
+          <Mail className="size-5 transition-transform duration-300 group-hover:-translate-y-0.5" />
+          <span className="font-mono text-[10px] font-bold uppercase tracking-widest">Contatti</span>
         </a>
       </nav>
     </>

@@ -150,9 +150,17 @@ export function EnvironmentTerminal() {
         className="flex-1 overflow-y-auto p-4 md:p-6 no-scrollbar scroll-smooth"
       >
         <div className="flex flex-col">
-          <div className="mb-6 flex flex-col gap-1 text-foreground/50 select-none border-b border-border/30 pb-4">
+          <div className="mb-6 flex-col gap-1 text-foreground/50 select-none border-b border-border/30 pb-4 hidden md:flex">
             <span className="tracking-widest">EMANUELE_LIONETTI_SYS_DIAGNOSTICS v2.0</span>
             <span>Type <span className="text-primary font-bold">'help'</span> to see available commands.</span>
+          </div>
+
+          {/* Auto-boot scenografico esclusivo su mobile */}
+          <div className="md:hidden mb-6 flex flex-col gap-1 text-accent-rust border-b border-border/30 pb-4">
+            <TypedOutput 
+              text={`[INIT] Boot sequence started...\n[CHK] BIOS modules ... OK\n[CHK] Storage mounts ... OK\n[WARN] No tty available.\n[INFO] Diagnostics running in Read-Only Mode.`}
+              onTick={scrollToBottom}
+            />
           </div>
 
           {history.map((record, index) => (
@@ -175,20 +183,30 @@ export function EnvironmentTerminal() {
         </div>
 
         {!isTyping && (
-          <div className="flex items-center gap-2 mt-auto select-none pb-4 pt-2">
-            <span className="text-primary font-bold whitespace-nowrap">manu.lionetti@sys.diagnostic</span>
-            <span className="text-foreground font-bold whitespace-nowrap">:~#</span>
-            <input
-              ref={inputRef}
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              className="flex-1 bg-transparent text-accent-olive outline-none border-none focus:ring-0 ml-1 font-mono md:text-sm caret-foreground"
-              spellCheck={false}
-              autoComplete="off"
-            />
-          </div>
+          <>
+            {/* Read-only notice su mobile — nessun input touch */}
+            <div className="flex items-center select-none md:hidden opacity-50 mt-auto pt-2">
+              <span className="font-mono text-[clamp(0.625rem,1.5vw,0.75rem)] whitespace-nowrap text-accent-olive/70">
+                [ READ-ONLY MODE — interazione su desktop ]
+              </span>
+            </div>
+
+            {/* Prompt interattivo — solo su md+ */}
+            <div className="hidden md:flex items-center gap-2 mt-auto select-none pb-4 pt-2">
+              <span className="text-primary font-bold whitespace-nowrap">manu.lionetti@sys.diagnostic</span>
+              <span className="text-foreground font-bold whitespace-nowrap">:~#</span>
+              <input
+                ref={inputRef}
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                className="flex-1 bg-transparent text-accent-olive outline-none border-none focus:ring-0 ml-1 font-mono md:text-sm caret-foreground"
+                spellCheck={false}
+                autoComplete="off"
+              />
+            </div>
+          </>
         )}
         <div className="h-4" />
       </div>

@@ -94,8 +94,8 @@ export function CharacterTimeline() {
       className="flex w-full flex-col gap-6 md:gap-8 rounded-lg border border-border bg-background p-6 md:p-8 relative"
     >
       <header className="border-b border-border pb-2 md:pb-4 relative z-10">
-        <h3 className="font-mono text-sm md:text-base lg:text-lg 2xl:text-xl font-bold uppercase tracking-widest text-primary">
-          [ QUEST_LOG & LORE ]
+        <h3 className="font-mono text-[clamp(0.875rem,2.5vw,1.25rem)] whitespace-nowrap font-bold uppercase tracking-widest text-primary">
+          [ CRONOLOGIA ]
         </h3>
       </header>
 

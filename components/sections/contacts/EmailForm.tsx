@@ -41,7 +41,7 @@ export function EmailForm() {
       {/* Intestazione finta mailbox */}
       <div className="flex items-center gap-2 border-b border-accent-olive/20 pb-4 mb-2">
         <Mail className="h-5 w-5 text-accent-olive" />
-        <span className="text-sm uppercase tracking-widest text-primary font-bold">Compose_Message</span>
+        <span className="text-sm uppercase tracking-widest text-primary font-bold">Nuovo Messaggio</span>
       </div>
 
       {/* RIGA 1: Subject */}
@@ -56,7 +56,7 @@ export function EmailForm() {
             type="text"
             value={formData.subject}
             onChange={handleChange}
-            className="w-full bg-transparent border-b border-white/10 px-0 py-2 text-sm text-foreground focus:border-primary focus:outline-none transition-colors"
+            className="w-full bg-transparent border-b border-white/10 px-0 py-2 text-base text-foreground focus:border-primary focus:outline-none transition-colors"
             placeholder="Re: Proposta di collaborazione..."
             required
           />
@@ -76,7 +76,7 @@ export function EmailForm() {
             type="text"
             value={formData.cc}
             onChange={handleChange}
-            className="w-full bg-transparent border-b border-white/10 px-0 py-2 text-sm text-foreground focus:border-primary focus:outline-none transition-colors"
+            className="w-full bg-transparent border-b border-white/10 px-0 py-2 text-base text-foreground focus:border-primary focus:outline-none transition-colors"
             placeholder="Spara nomi, copia carbone..."
           />
         </div>
@@ -110,7 +110,7 @@ export function EmailForm() {
           name="body"
           value={formData.body}
           onChange={handleChange}
-          className="w-full flex-1 min-h-[150px] lg:min-h-0 resize-none bg-white/5 rounded border border-white/5 p-3 text-sm text-foreground focus:border-primary/50 focus:bg-white/10 focus:outline-none transition-colors scroll-smooth no-scrollbar"
+          className="w-full flex-1 min-h-[150px] lg:min-h-0 resize-none bg-white/5 rounded border border-white/5 p-3 text-base text-foreground focus:border-primary/50 focus:bg-white/10 focus:outline-none transition-colors scroll-smooth no-scrollbar"
           placeholder="> Scrivi qui il tuo protocollo di comunicazione..."
           required
         />
@@ -123,7 +123,7 @@ export function EmailForm() {
           className="group/emailbtn flex items-center gap-2 rounded border border-accent-olive bg-accent-olive/10 px-6 py-2.5 text-xs font-bold uppercase tracking-widest text-accent-olive transition-all hover:bg-accent-olive hover:text-black focus:outline-none focus:ring-2 focus:ring-accent-olive focus:ring-offset-2 focus:ring-offset-black"
         >
           <Send className="h-4 w-4 transition-transform group-hover/emailbtn:translate-x-1 group-hover/emailbtn:-translate-y-1 duration-200" />
-          <span>INVIA_MESSAGGIO</span>
+          <span>INVIA MESSAGGIO</span>
         </button>
       </div>
 

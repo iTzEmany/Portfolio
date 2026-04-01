@@ -25,14 +25,13 @@ export function CharacterAvatar() {
 
   return (
     <article className="flex h-full flex-col gap-4 md:gap-6 rounded-lg border border-border bg-background p-6 md:p-8 items-center justify-center">
-      {/* Placeholder Pixel Art */}
-      <div className="flex aspect-square w-full max-w-100 items-center justify-center rounded border-2 border-dashed border-primary/20 bg-primary/5 p-4 text-center font-mono text-sm md:text-base lg:text-lg uppercase text-primary/50">
+      <div className="flex aspect-square w-full max-w-100 items-center justify-center rounded border-2 border-dashed border-primary/20 bg-primary/5 p-4 text-center font-mono text-[clamp(0.875rem,2.5vw,1.125rem)] whitespace-nowrap uppercase text-primary/50">
         [PIXEL ART AVATAR]
       </div>
 
       {/* Anagrafica Personaggio */}
       <header className="flex flex-col gap-3 text-center md:text-left text-foreground">
-        <h2 className="font-mono text-xl md:text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold uppercase tracking-widest text-primary">
+        <h2 className="font-mono text-[clamp(1.25rem,4vw,2.25rem)] whitespace-nowrap font-bold uppercase tracking-widest text-primary">
           [ EMANUELE LIONETTI ]
         </h2>
         

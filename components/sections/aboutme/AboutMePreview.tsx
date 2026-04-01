@@ -9,7 +9,7 @@ export function AboutMePreview() {
   return (
     <article className="relative flex h-full w-full items-center justify-center p-2 xl:p-4 bg-transparent">
       {/* Placeholder Pixel Art ridimensionata come visual centrale */}
-      <div className="flex aspect-square w-32 md:w-40 lg:w-48 xl:w-56 items-center justify-center rounded border-2 border-dashed border-primary/20 bg-primary/5 text-center font-mono text-xs uppercase text-primary/30 transition-transform duration-500 ease-in-out group-hover:scale-[1.05]">
+      <div className="flex aspect-square w-32 md:w-40 lg:w-48 xl:w-56 items-center justify-center rounded border-2 border-dashed border-primary/20 bg-primary/5 text-center font-mono text-[clamp(0.75rem,2vw,1rem)] whitespace-nowrap uppercase text-primary/30 transition-transform duration-500 ease-in-out group-hover:scale-[1.05]">
         [PIXEL ART]
       </div>
 

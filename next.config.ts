@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     // or provide it globally as suggested by the error output.
   },
   // La documentazione nel log suggerisce di inserirlo direttamente nell'oggetto di export
-  allowedDevOrigins: ["172.20.10.10"],
+  allowedDevOrigins: ["172.20.10.10", "172.29.14.159"],
 } as any; // Cast per Next.js mismatch type eventuali
 
 export default nextConfig;

@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 /**
  * Contenitore principale della Bento Grid.
@@ -80,7 +81,7 @@ export const BentoGridItem = ({
           {icon}
         </div>
         
-        <div className="font-mono font-bold text-primary mb-1">
+        <div className="font-mono font-bold text-primary mb-1 flex justify-end">
           {title}
         </div>
         <div className="font-sans font-normal text-foreground/70 text-sm">
@@ -88,10 +89,11 @@ export const BentoGridItem = ({
         </div>
       </div>
 
-      {/* Call To Action in Overlay Assoluto, reveal su hover */}
-      <div className="absolute bottom-4 left-4 z-20 transform-gpu translate-y-10 opacity-0 transition-all duration-300 lg:group-hover:translate-y-0 lg:group-hover:opacity-100 flex items-center">
-        <span className="font-mono text-sm font-bold text-accent-olive">
-          [ ACCESS DATA ➔ ]
+      {/* Call To Action: visibile su mobile, animata (reveal) su desktop */}
+      <div className="absolute bottom-4 left-4 z-20 flex items-center transition-all duration-300 opacity-100 translate-y-0 lg:opacity-0 lg:translate-y-10 lg:group-hover:translate-y-0 lg:group-hover:opacity-100">
+        <span className="font-mono text-sm font-bold text-accent-olive flex items-center gap-2">
+          <span>Scopri di più</span>
+          <ArrowRight className="size-4" />
         </span>
       </div>
     </motion.div>

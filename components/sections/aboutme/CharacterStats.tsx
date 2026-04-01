@@ -41,7 +41,7 @@ export function CharacterStats() {
   return (
     <article className="flex h-full flex-col gap-4 md:gap-6 rounded-lg border border-border bg-background p-6 md:p-8">
       <header className="border-b border-border pb-2 md:pb-4">
-        <h3 className="font-mono text-sm md:text-base lg:text-lg 2xl:text-xl font-bold uppercase tracking-widest text-primary">
+        <h3 className="font-mono text-[clamp(0.875rem,2.5vw,1.25rem)] whitespace-nowrap font-bold uppercase tracking-widest text-primary">
           [ STATISTICS_CORE ]
         </h3>
       </header>

@@ -31,7 +31,7 @@ const TypedOutput = ({
   }, [visibleLength, text.length, onComplete]);
 
   return (
-    <pre className="font-mono text-sm md:text-base whitespace-pre-wrap break-words text-accent-olive">
+    <pre className="font-mono text-sm md:text-base whitespace-pre-wrap wrap-break-word text-accent-olive">
       {text.substring(0, visibleLength)}
     </pre>
   );
@@ -117,10 +117,18 @@ export function ActiveShell() {
       className="flex h-full w-full flex-col overflow-y-auto no-scrollbar scroll-smooth bg-black p-6 font-mono text-sm md:text-base text-accent-olive/80 cursor-text"
       onClick={focusInput}
     >
-      <div className="mb-4 space-y-1 select-none">
+      <div className="mb-4 space-y-1 select-none hidden md:block">
         <p className="text-primary font-bold">Welcome to Portfolio System Shell [v0.1]</p>
         <p>Digitare 'help' per simulazione comandi.</p>
         <p className="opacity-50">--------------------------------------------------</p>
+      </div>
+
+      {/* Auto-boot scenografico esclusivo su mobile */}
+      <div className="md:hidden mb-4">
+        <TypedOutput 
+          text={`[INIT] Boot sequence started...\n[CHK] Memoria allocata ... OK\n[CHK] Rete ... OK\n[WARN] Dispositivi input non rilevati.\n[INFO] Commutazione in Read-Only Mode.`}
+          onTick={scrollToBottom}
+        />
       </div>
 
       <div className="flex-1 space-y-2">
@@ -141,19 +149,29 @@ export function ActiveShell() {
         ))}
 
         {!isTyping && (
-          <div className="flex items-center select-none">
-            <span className="mr-2 font-bold text-primary">manu.lionetti@portfolio:~$</span>
-            <input
-              ref={inputRef}
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              className="flex-1 bg-transparent font-mono text-primary outline-none border-none focus:ring-0"
-              spellCheck={false}
-              autoComplete="off"
-            />
-          </div>
+          <>
+            {/* Read-only notice su mobile — nessun input touch */}
+            <div className="flex items-center select-none md:hidden opacity-50 mt-1">
+              <span className="font-mono text-[clamp(0.75rem,2vw,0.875rem)] whitespace-nowrap text-accent-olive/70">
+                [ READ-ONLY MODE — interazione su md+ ]
+              </span>
+            </div>
+
+            {/* Prompt interattivo — solo su md+ */}
+            <div className="hidden md:flex items-center select-none">
+              <span className="mr-2 font-bold text-primary">manu.lionetti@portfolio:~$</span>
+              <input
+                ref={inputRef}
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                className="flex-1 bg-transparent font-mono text-base text-primary outline-none border-none focus:ring-0"
+                spellCheck={false}
+                autoComplete="off"
+              />
+            </div>
+          </>
         )}
         <div className="h-4" /> {/* Ancora padding bottom */}
       </div>

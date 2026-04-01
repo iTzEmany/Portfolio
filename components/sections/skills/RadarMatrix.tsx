@@ -9,7 +9,7 @@ export function RadarMatrix() {
       <div className="absolute inset-0 bg-linear-to-br from-transparent via-accent-olive/5 to-transparent pointer-events-none" />
       
       <header className="w-full border-b border-border/50 pb-4 mb-10 flex justify-between items-end relative z-10">
-        <h3 className="text-accent-olive text-2xl md:text-3xl lg:text-4xl font-bold uppercase tracking-widest leading-tight">
+        <h3 className="text-accent-olive text-[clamp(0.875rem,2.5vw,1.25rem)] whitespace-nowrap font-bold uppercase tracking-widest leading-tight">
           [ SKILL MATRIX ]
         </h3>
       </header>
