@@ -102,7 +102,7 @@ function HomeContent() {
   return (
     <main className="relative w-full">
       {/* 1. Viewport: Hero Section */}
-      <section id="hero" className="relative flex min-h-screen w-full flex-col items-center justify-center bg-background px-4">
+      <section id="hero" className="relative flex min-h-screen w-full flex-col items-center justify-center bg-background">
         <Hero />
       </section>
 

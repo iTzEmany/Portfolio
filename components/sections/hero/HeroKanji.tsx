@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion, Variants } from "framer-motion";
+import { setPretextFocus } from "./PretextEngine";
 
 export const HeroKanji = () => {
   const pulseVariants: Variants = {
@@ -17,15 +18,16 @@ export const HeroKanji = () => {
       animate={{ opacity: 1 }}
       transition={{ delay: 1, duration: 1 }}
       aria-hidden="true"
-      // FIX: Nascosto su mobile (hidden), visibile da sm in su (block)
-      // FIX: Dimensioni ridotte per non sovrapporsi al testo principale
-      className="pointer-events-none absolute hidden select-none opacity-[0.03] mix-blend-overlay sm:block sm:right-[5%] sm:top-[15%] md:right-[8%]"
+      className="absolute hidden select-none opacity-[0.03] mix-blend-overlay sm:block sm:right-[5%] sm:top-[15%] md:right-[8%]"
       style={{ writingMode: "vertical-rl" }}
     >
       <motion.span 
         variants={pulseVariants}
         animate="pulsing"
-        className="font-sans font-black tracking-widest text-7xl md:text-9xl lg:text-[11rem]"
+        onPointerEnter={(e) => setPretextFocus(e.currentTarget as HTMLElement)}
+        onPointerLeave={() => setPretextFocus(null)}
+        // pointer-events-auto permette al Kanji di innescare l'evento
+        className="pointer-events-auto font-sans font-black tracking-widest text-7xl md:text-9xl lg:text-[11rem]"
       >
         開発者
       </motion.span>

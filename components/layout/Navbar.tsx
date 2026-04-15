@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Home, LayoutGrid, Mail, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { NoiseToggle } from "@/components/ui/NoiseToggle";
+import { setPretextFocus } from "@/components/sections/hero/PretextEngine";
 
 const NAV_LINKS = [
   { label: "Hero", href: "#hero" },
@@ -43,6 +44,8 @@ export function Navbar({ showNoise, onToggleNoise }: { showNoise: boolean; onTog
           <div className="flex flex-1 items-center">
             <a
               href="#hero"
+              onPointerEnter={(e) => setPretextFocus(e.currentTarget)}
+              onPointerLeave={() => setPretextFocus(null)}
               className="font-mono text-[clamp(1rem,3vw,1.125rem)] whitespace-nowrap font-bold tracking-widest text-primary transition-opacity hover:opacity-80"
             >
               [ EMANUELE LIONETTI ]
@@ -51,7 +54,10 @@ export function Navbar({ showNoise, onToggleNoise }: { showNoise: boolean; onTog
 
           {/* NAVBAR — centro (solo desktop) */}
           <nav className="hidden md:flex flex-1 justify-center">
-            <ul className="flex items-center gap-8">
+            <ul 
+              className="flex items-center gap-8"
+              onPointerEnter={(e) => setPretextFocus(e.currentTarget)}
+              onPointerLeave={() => setPretextFocus(null)}>
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <a
@@ -68,18 +74,24 @@ export function Navbar({ showNoise, onToggleNoise }: { showNoise: boolean; onTog
 
           {/* CTA DESTRA — noise toggle sempre visibile + Download CV solo desktop */}
           <div className="flex flex-1 justify-end items-center gap-2">
-            {/* Noise Toggle: visibile su mobile E desktop */}
-            <NoiseToggle showNoise={showNoise} onToggle={onToggleNoise} />
+            
+            <div
+              className="flex items-center gap-2"
+              onPointerEnter={(e) => setPretextFocus(e.currentTarget)}
+              onPointerLeave={() => setPretextFocus(null)}>
+              {/* Noise Toggle: visibile su mobile E desktop */}
+              <NoiseToggle showNoise={showNoise} onToggle={onToggleNoise} />
 
-            {/* Download CV: solo desktop */}
-            <a
-              href="/cv.pdf"
-              download="Curriculum_Vitae.pdf"
-              className="hidden md:inline-flex group items-center gap-2 rounded border border-primary bg-primary/10 px-4 py-2 font-mono text-xs font-bold uppercase tracking-widest text-primary transition-all hover:bg-primary hover:text-background focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
-            >
-              <Download className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" aria-hidden="true" />
-              <span>Download CV</span>
-            </a>
+              {/* Download CV: solo desktop */}
+              <a
+                href="/cv.pdf"
+                download="Curriculum_Vitae.pdf"
+                className="hidden md:inline-flex group items-center gap-2 rounded border border-primary bg-primary/10 px-4 py-2 font-mono text-xs font-bold uppercase tracking-widest text-primary transition-all hover:bg-primary hover:text-background focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+              >
+                <Download className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" aria-hidden="true" />
+                <span>Download CV</span>
+              </a>
+            </div>
           </div>
         </div>
       </motion.header>
